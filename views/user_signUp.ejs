@@ -1,0 +1,30 @@
+<%- include('header') %>
+
+<center><div class="card" style="width: 30rem; padding: 1rem; border: 2px solid black;">
+    <div><h2>Sign-Up</h2></div><hr>
+    <form action="/user/create" method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" name="name" class="form-control" id="name" placeholder="Enter Name..">
+          </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Email.."  required>
+          
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password.." required>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
+          <input type="password" name="confirmpassword" class="form-control" id="exampleInputPassword1" placeholder="Confirm Password.." required>
+        </div>
+        
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+  </div>
+</center>
+
+<%- include('footer') %>

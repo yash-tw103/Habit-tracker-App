@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+  </head>
+  <body style="background-color: rgba(223, 101, 19, 0.767);">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Habit Tracker</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          
+        </div>
+      </nav>
+      <br><br>
+      
+      <center><div>
+        <a href="/user/profile"><button class="btn btn-success btn-lg">Go to Daily Habits</button></a>
+      </div></center>
+
+
+
+
+    <!-- // -->
+    
+    <ul class="list-group my-5 mx-5" >
+      <% habits.forEach((habit) => { %>
+        <li class="list-group-item" style="background: linear-gradient(90deg, rgba(29,36,0,1) 0%, rgba(69,153,66,1) 23%, rgba(20,216,174,1) 60%, rgba(105,101,80,1) 93%);">
+          <span style="color: white; font-weight: bold; font-size: 2rem;"><%= habit.name %></span>
+          <ul style="display: flex; list-style: none; justify-content: space-between;" class="mx-5 my-3">
+            <% const date=new Date() ; const monthNames=["January", "February" , "March" , "April" , "May"
+                            , "June" , "July" , "August" , "September" , "October" , "November" , "December" ]; %>
+            <% habit.done.forEach((status, index) => { %>
+              <li >
+                
+                <div style=" text-align: center; padding: 1.4rem; border-radius: 50%; background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(153,91,66,1) 27%, rgba(216,191,20,1) 60%, rgba(105,101,80,1) 93%); ">
+                   <button class="btn btn-danger"> <span><%= date.getDate()+index %></span> <span><%= monthNames[date.getMonth()] %></span> <span><%= date.getFullYear() %></span></button>
+                    <br>
+                
+                <span><form action="/update" method="POST">
+                  <input type="hidden" name="habitId" value="<%= habit._id %>">
+                  <input type="hidden" name="dayIndex" value="<%= index %>">
+                  <input type="hidden" name="status" value="<%= status ? 'notDone' : 'done' %>">
+                  <label>
+                   
+
+                    <button class="btn btn-warning btn-sm" ><input type="checkbox" onchange="this.form.submit()" <%= status ? 'checked' : '' %>>
+                    <%= status ? 'Done' : 'Not Done' %></button>
+                  </label>
+                </form></span>
+            </div>
+              </li>
+            <% }); %>
+          </ul>
+        </li>
+      <% }); %>
+    </ul>
+  </body>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+</html>

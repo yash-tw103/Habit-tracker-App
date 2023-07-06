@@ -1,0 +1,36 @@
+<%- include('header') %>
+
+<body style="background-color: rgba(223, 101, 19, 0.767);">
+    
+      <br><br>
+      <center><div>
+        <a href="/weekly"><button class="btn btn-success btn-lg">Go to Weekly Habits</button></a>
+      </div></center>
+      <div class="container mt-5">
+        <h3><center>Habit Tracker</center></h3>
+    <form action="/create" method="POST" class="d-flex" >
+      <input type="text" name="name" class="form-control" placeholder="Enter Habit Here..." required style="padding: 1rem; border: .5px solid rgb(27, 85, 112); background-color: aquamarine;;">
+      <input type="submit" value="Add Habit" class="btn btn-md btn-primary mx-2">
+    </form>
+
+      </div>
+
+
+
+
+    <!-- // -->
+    
+    <ul class="list-group my-5 mx-auto" style="width: 80%;" >
+      <% habits.forEach((habit) => { %>
+        <li class="list-group-item" style="background: linear-gradient(90deg, rgba(29,36,0,1) 0%, rgba(236,110,7,1) 12%, rgba(216,191,20,1) 72%, rgba(105,101,80,1) 100%);">
+          <button class="btn btn-success btn-sm"><%= habit.user.name %></button> <button class="btn btn-warning" style=" font-weight: bold;font-size: 1.3rem;"><%= habit.name %></button>
+          <div style="float: right;">
+            <a href="/edit/<%= habit._id %>" class="btn btn-primary"  >Update</a>&nbsp; <a href="/delete/<%= habit._id %>"
+                  class="btn btn-danger" >Delete</a> 
+                </div>
+        </li>
+      <% }); %>
+    </ul>
+  
+
+<%- include('footer') %>
